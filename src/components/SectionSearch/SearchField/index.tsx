@@ -50,6 +50,7 @@ const InputSearch = () => {
       <Input
         onChange={handleChange}
         maxLength={15}
+        inputMode="numeric"
         placeholder="Pesquise por qualquer endereço de IP ou domínio"
       />
       <Button onClick={handleClick}>
