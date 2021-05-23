@@ -10,10 +10,7 @@ const Location = () => {
   return (
     <Wrapper>
       <LocationInfo infos={address} />
-      <LocationMap
-        latitude={address.location.lat}
-        longitude={address.location.lng}
-      />
+      <LocationMap infoLocation={address.location} />
     </Wrapper>
   )
 }

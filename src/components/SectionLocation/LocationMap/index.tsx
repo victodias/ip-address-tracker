@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import LeafLet from 'leaflet'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Address } from 'types'
 
 type Props = {
-  latitude: number
-  longitude: number
+  infoLocation: Address
 }
 
 const IconLocation = LeafLet.icon({
@@ -12,9 +12,12 @@ const IconLocation = LeafLet.icon({
   iconSize: [30, 40]
 })
 
-const LocationMap = ({ latitude, longitude }: Props) => {
+const LocationMap = ({ infoLocation }: Props) => {
   const [keyMap, setKeyMap] = useState<number>(0)
+  const { lat: latitude, lng: longitude } = infoLocation
 
+  // this random 'keyMap' resolves, for now, the problem of
+  // render image map when latitude/longitude are updated.
   useEffect(() => {
     setKeyMap(Math.random())
   }, [latitude, longitude])
@@ -32,6 +35,8 @@ const LocationMap = ({ latitude, longitude }: Props) => {
       />
       <Marker position={[latitude, longitude]} icon={IconLocation}>
         <Popup>
+          <b>Local:</b> {infoLocation.city} - {infoLocation.region},{' '}
+          {infoLocation.country} <br />
           <b>Latitude:</b> {latitude} <br />
           <b>Longitude:</b> {longitude}
         </Popup>
