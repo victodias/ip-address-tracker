@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import media from 'styled-media-query'
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -11,4 +12,10 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+  ${media.lessThan('medium')`
+    .leaflet-control-container .leaflet-top {
+      top: 100%;
+      transform: translateY(calc(-100% - 20px))
+    }
+  `}
 `
