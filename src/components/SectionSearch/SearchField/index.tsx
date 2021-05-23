@@ -51,7 +51,7 @@ const InputSearch = () => {
         onChange={handleChange}
         maxLength={15}
         inputMode="numeric"
-        placeholder="Pesquise por qualquer endereço de IP ou domínio"
+        placeholder="Pesquise por um endereço de IP ou domínio"
       />
       <Button onClick={handleClick}>
         {isLoading ? <Spinner src="/img/spinner.gif" /> : <IconArrow />}
