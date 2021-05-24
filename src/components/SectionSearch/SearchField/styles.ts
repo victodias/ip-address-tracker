@@ -34,11 +34,6 @@ export const Button = styled.button`
 export const IconArrow = styled.span`
   content: url('/img/icon-arrow.svg');
 `
-export const Spinner = styled.img`
-  height: 40px;
-  width: 40px;
-`
-
 export const FeedbackError = styled.div`
   background: #ffdee8;
   border-radius: 8px;

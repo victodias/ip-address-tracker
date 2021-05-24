@@ -5,6 +5,7 @@ import { getIpAddress } from 'api'
 type LocationContextProps = {
   address: Location
   setAddress: React.Dispatch<React.SetStateAction<Location>>
+  loadingLocation: boolean
 }
 
 export const LocationContext = createContext<LocationContextProps>(
@@ -22,17 +23,22 @@ export const LocationProvider = ({ children }: Props) => {
       region: '',
       country: '',
       city: '',
-      lat: 0,
-      lng: 0,
+      lat: -23.5945378,
+      lng: -46.6816103,
       postalCode: '',
       timezone: ''
     },
     isp: ''
   })
+  const [loadingLocation, setLoadingLocation] = useState<boolean>(false)
 
   useEffect(() => {
     const fetch = async () => {
+      setLoadingLocation(true)
+
       await getIpAddress().then((response) => {
+        setLoadingLocation(false)
+
         return setAddress({
           ip: response.data.ip,
           location: response.data.location,
@@ -44,7 +50,7 @@ export const LocationProvider = ({ children }: Props) => {
   }, [])
 
   return (
-    <LocationContext.Provider value={{ address, setAddress }}>
+    <LocationContext.Provider value={{ address, setAddress, loadingLocation }}>
       {children}
     </LocationContext.Provider>
   )

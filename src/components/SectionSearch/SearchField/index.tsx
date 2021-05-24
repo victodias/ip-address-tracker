@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Wrapper, Input, Button, IconArrow, Spinner } from './styles'
+import { Wrapper, Input, Button, IconArrow } from './styles'
 import FeedbackError from 'components/FeedbackError'
+import Loading from 'components/Loading'
 import { getIpAddress } from 'api'
 import { useLocation } from 'context/Location'
 
@@ -18,7 +19,7 @@ const InputSearch = () => {
 
         setAddress({
           ...address,
-          ip,
+          ip: response.data.ip,
           location: response.data.location,
           isp: response.data.isp
         })
@@ -49,7 +50,7 @@ const InputSearch = () => {
       />
       <Button onClick={handleClick}>
         {isLoading ? (
-          <Spinner src="/img/spinner.gif" data-testid="spinner-loading" />
+          <Loading imageUrl="/img/spinner.gif" height={40} width={40} />
         ) : (
           <IconArrow />
         )}

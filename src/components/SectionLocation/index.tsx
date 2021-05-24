@@ -5,11 +5,11 @@ import LocationMap from './LocationMap'
 import { useLocation } from 'context/Location'
 
 const Location = () => {
-  const { address } = useLocation()
+  const { address, loadingLocation } = useLocation()
 
   return (
     <Wrapper>
-      <LocationInfo infos={address} />
+      <LocationInfo infos={address} isLoading={loadingLocation} />
       <LocationMap infoLocation={address.location} />
     </Wrapper>
   )
