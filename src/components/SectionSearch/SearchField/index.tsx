@@ -48,7 +48,11 @@ const InputSearch = () => {
         placeholder="Pesquise por um endereço de IP ou domínio"
       />
       <Button onClick={handleClick}>
-        {isLoading ? <Spinner src="/img/spinner.gif" /> : <IconArrow />}
+        {isLoading ? (
+          <Spinner src="/img/spinner.gif" data-testid="spinner-loading" />
+        ) : (
+          <IconArrow />
+        )}
       </Button>
       {error && (
         <FeedbackError message="Erro ao buscar este endereço de IP. Verifique se o dado informado está correto e tente novamente." />

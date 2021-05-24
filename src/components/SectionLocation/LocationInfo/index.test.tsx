@@ -19,34 +19,14 @@ describe('<LocationInfo />', () => {
     isp: ''
   }
 
-  const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn()
-  }
-
-  //@ts-ignore
-  navigator.geolocation = mockGeolocation
-
-  const WrapperComponent = ({ children }: { children: React.ReactNode }) => (
-    <LocationProvider>{children}</LocationProvider>
-  )
-
   it('should render the component correctly', () => {
-    const component = render(
-      <WrapperComponent>
-        <LocationInfo infos={initialData} />
-      </WrapperComponent>
-    )
+    const component = render(<LocationInfo infos={initialData} />)
 
     expect(component.container).toBeInTheDocument()
   })
 
   it('should render location infos correctly', () => {
-    const component = render(
-      <WrapperComponent>
-        <LocationInfo infos={initialData} />
-      </WrapperComponent>
-    )
+    const component = render(<LocationInfo infos={initialData} />)
 
     const city = /Barueri/i
     const region = /São Paulo/
@@ -72,11 +52,7 @@ describe('<LocationInfo />', () => {
       }
     }
 
-    const component = render(
-      <WrapperComponent>
-        <LocationInfo infos={infoData} />
-      </WrapperComponent>
-    )
+    const component = render(<LocationInfo infos={infoData} />)
 
     const emptyChar = component.getAllByText('-')
 
@@ -84,11 +60,7 @@ describe('<LocationInfo />', () => {
   })
 
   it('should not display different informations of expected by request', () => {
-    const component = render(
-      <WrapperComponent>
-        <LocationInfo infos={initialData} />
-      </WrapperComponent>
-    )
+    const component = render(<LocationInfo infos={initialData} />)
 
     const city = /Belo Horizonte/i
     const region = /Minas Gerais/
