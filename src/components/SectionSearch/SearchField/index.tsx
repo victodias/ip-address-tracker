@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
-import {
-  Wrapper,
-  Input,
-  Button,
-  IconArrow,
-  Spinner,
-  FeedbackError
-} from './styles'
+import { Wrapper, Input, Button, IconArrow, Spinner } from './styles'
+import FeedbackError from 'components/FeedbackError'
 import { getIpAddress } from 'api'
 import { useLocation } from 'context/Location'
 
 const InputSearch = () => {
-  const [ip, setIp] = useState<string>('')
   const { address, setAddress } = useLocation()
+  const [ip, setIp] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
@@ -56,12 +50,9 @@ const InputSearch = () => {
       <Button onClick={handleClick}>
         {isLoading ? <Spinner src="/img/spinner.gif" /> : <IconArrow />}
       </Button>
-      {error ? (
-        <FeedbackError>
-          Erro ao buscar este endereço de IP. Verifique se o dado informado está
-          correto e tente novamente.
-        </FeedbackError>
-      ) : null}
+      {error && (
+        <FeedbackError message="Erro ao buscar este endereço de IP. Verifique se o dado informado está correto e tente novamente." />
+      )}
     </Wrapper>
   )
 }

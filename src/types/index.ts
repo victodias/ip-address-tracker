@@ -1,7 +1,7 @@
 export type Location = {
-  ip?: string
+  ip: string
   location: Address
-  isp?: string
+  isp: string
 }
 
 export type Address = {

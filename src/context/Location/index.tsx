@@ -1,5 +1,6 @@
 import React, { useContext, useState, createContext, useEffect } from 'react'
 import { Location } from 'types'
+import { getIpAddress } from 'api'
 
 type LocationContextProps = {
   address: Location
@@ -16,28 +17,30 @@ type Props = {
 
 export const LocationProvider = ({ children }: Props) => {
   const [address, setAddress] = useState<Location>({
+    ip: '',
     location: {
-      lat: -23.5944572,
-      lng: -46.6851322
-    }
+      region: '',
+      country: '',
+      city: '',
+      lat: 0,
+      lng: 0,
+      postalCode: '',
+      timezone: ''
+    },
+    isp: ''
   })
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords
-        setAddress({
-          location: {
-            lat: latitude,
-            lng: longitude
-          }
+    const fetch = async () => {
+      await getIpAddress().then((response) => {
+        return setAddress({
+          ip: response.data.ip,
+          location: response.data.location,
+          isp: response.data.isp
         })
-      },
-      (error) => {
-        alert(error.message)
-      },
-      { enableHighAccuracy: true }
-    )
+      })
+    }
+    fetch().catch((error) => error.message)
   }, [])
 
   return (

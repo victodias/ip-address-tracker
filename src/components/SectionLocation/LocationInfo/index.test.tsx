@@ -3,7 +3,6 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { LocationProvider } from 'context/Location'
 import LocationInfo from './'
-import { Wrapper } from 'components/SectionSearch/styles'
 
 describe('<LocationInfo />', () => {
   const initialData = {

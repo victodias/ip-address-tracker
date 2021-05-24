@@ -7,5 +7,5 @@ const instance = axios.create({
 
 const apiKey = process.env.REACT_APP_IPIFY_KEY
 
-export const getIpAddress = (ipAddress: string) =>
+export const getIpAddress = (ipAddress?: string) =>
   instance.get<LocationResponse>(`/api/v1`, { params: { apiKey, ipAddress } })
